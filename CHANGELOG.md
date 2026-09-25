@@ -3,14 +3,33 @@
 Toutes les modifications notables de ce projet seront consignées dans ce fichier.
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/).
 
+Statuts utilisés : [Effectué], [Terminé], [En cours], [En attente], [Résolu], [Non résolu].
+
 ---
 
-## [Non publié] - À venir
+## [1.0.1] - 2026-09-25 - Publication GitHub
 
-### Modifié
-- **Renommage du projet en Bloomera** : interface dashboard, labels et métadonnées mises à jour pour refléter l'identité du bot.
-- **Nouveau thème visuel** : palette de couleurs ambrée / dorée appliquée au dashboard pour une ambiance plus chaleureuse et personnalisée.
-- **Ajustement des couleurs de bienvenue** : définition du palette Bloomera (`#F59E0B`) pour les embeds de bienvenue et autres messages configurables du bot.
+### État du projet [Terminé]
+- **Projet prêt pour publication GitHub** : le nom Bloomera a été appliqué au dashboard et au branding du bot, avec une identité visuelle ambrée / dorée cohérente. [Effectué]
+- **Version de travail stabilisée** : les modifications visuelles et les réglages de configuration ont été documentées et consolidées dans le journal du projet. [Effectué]
+
+### Modifié [Effectué]
+- **Renommage du projet en Bloomera** : interface dashboard, labels et métadonnées mises à jour pour refléter l'identité du bot. [Effectué]
+- **Nouveau thème visuel** : palette de couleurs ambrée / dorée appliquée au dashboard pour une ambiance plus chaleureuse et personnalisée. [Effectué]
+- **Ajustement des couleurs de bienvenue** : définition de la palette Bloomera (`#F59E0B`) pour les embeds de bienvenue et autres messages configurables du bot. [Effectué]
+
+### Problèmes rencontrés et solutions [Résolu]
+- **Erreur d’environnement de validation** : lors du test de build du dashboard, la commande `npm run build:dashboard` a échoué avec `CommandNotFoundException` dans le terminal PowerShell, indiquant que `npm` n’était pas disponible dans le `PATH` de l’environnement. [Résolu]
+  - **Solution** : validation du problème comme source d’environnement, sans modifier le projet ; la vérification technique a été reportée au moment où Node.js/npm est correctement installé ou activé dans le terminal. [Résolu]
+- **Conflit visuel avec le thème générique initial** : le dashboard utilisait encore des accents neutres et `indigo` par défaut, ce qui ne correspondait pas à l’identité Bloomera. [Résolu]
+  - **Solution** : remplacement des libellés et accents par une palette ambrée/dorée plus chaleureuse, avec un nom visible dans l’interface et le layout principal. [Résolu]
+- **Cohérence de la palette de bienvenue** : le fallback de configuration et le schéma Prisma conservaient encore une couleur Discord standard (`#5865F2`) incompatible avec le thème Bloomera. [Résolu]
+  - **Solution** : mise à jour du schéma Prisma et de la réponse API par défaut vers `#F59E0B`, afin d’assurer une cohérence entre la base de données, l’interface et les messages envoyés par le bot. [Résolu]
+
+### Notes Techniques [Effectué]
+- Le terminal utilisé pour les vérifications est PowerShell Windows, où `npm` n’était pas présent dans le `PATH` au moment de l’essai. [Effectué]
+- La personnalisation visuelle a été appliquée sans réécriture globale, en ciblant les fichiers de layout, de page d’accueil, de sidebar et de configuration de bienvenue. [Effectué]
+- Le projet est désormais considéré comme **prêt pour publication GitHub** après cette révision fonctionnelle et documentée. [Terminé]
 
 ---
 
