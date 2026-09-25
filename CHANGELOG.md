@@ -7,6 +7,28 @@ Statuts utilisés : [Effectué], [Terminé], [En cours], [En attente], [Résolu]
 
 ---
 
+## [1.0.3] - 2026-09-25 - Migration vers pnpm
+
+### Modifié [Effectué]
+- **Gestionnaire de paquets** : migration des scripts et installations du monorepo de npm vers pnpm. [Effectué]
+- **Workspaces locaux** : remplacement de `"@bot/database": "*"` par `"@bot/database": "workspace:*"` dans le bot et le dashboard pour forcer la résolution du package local. [Effectué]
+- **Scripts racine** : remplacement des options npm `--workspace` par les filtres pnpm `--filter`. [Effectué]
+- **Documentation** : commandes de base de données et de démarrage mises à jour dans le README. [Effectué]
+
+### Problèmes rencontrés et solutions [Résolu]
+- **Erreur `ERR_PNPM_FETCH_404`** : pnpm interprétait la dépendance `@bot/database: "*"` comme un paquet à télécharger depuis le registre npm. [Résolu]
+  - **Solution** : utilisation du protocole local `workspace:*` dans les deux applications. [Résolu]
+- **Erreur Windows `EISDIR` / `-4068` avec npm** : la création des liens des workspaces npm échouait dans l'environnement Windows. [Résolu]
+  - **Solution** : passage à pnpm et déclaration explicite des packages dans `pnpm-workspace.yaml`. [Résolu]
+
+### État [En attente]
+- La configuration du monorepo est alignée sur pnpm. [Terminé]
+- L'installation des dépendances et le build restent à valider avec `pnpm install` puis `pnpm build`. [En attente]
+
+---
+
+---
+
 ## [1.0.2] - 2026-09-25 - Correction de configuration OAuth / Dashboard
 
 ### Modifié [Effectué]

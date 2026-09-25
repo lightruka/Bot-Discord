@@ -7,14 +7,14 @@
     "apps/*"
   ],
   "scripts": {
-    "dev": "npm run dev:bot",
-    "dev:bot": "npm run dev --workspace=@bot/core",
-    "dev:dashboard": "npm run dev --workspace=@bot/dashboard",
-    "build:bot": "npm run build --workspace=@bot/core",
-    "build:dashboard": "npm run build --workspace=@bot/dashboard",
-    "build": "npm run build --workspaces --if-present",
-    "db:generate": "npm run generate --workspace=@bot/database",
-    "db:push": "npm run push --workspace=@bot/database",
-    "db:studio": "npm run studio --workspace=@bot/database"
+    "dev": "pnpm --filter @bot/core dev",
+    "dev:bot": "pnpm --filter @bot/core dev",
+    "dev:dashboard": "pnpm --filter @bot/dashboard dev",
+    "build:bot": "pnpm --filter @bot/core build",
+    "build:dashboard": "pnpm --filter @bot/dashboard build",
+    "build": "pnpm --recursive --if-present build",
+    "db:generate": "pnpm --filter @bot/database generate",
+    "db:push": "pnpm --filter @bot/database push",
+    "db:studio": "pnpm --filter @bot/database studio"
   }
 }

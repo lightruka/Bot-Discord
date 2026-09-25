@@ -8,7 +8,7 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
-    "@bot/database": "*",
+    "@bot/database": "workspace:*",
     "discord.js": "^14.16.3",
     "dotenv": "^16.4.5"
   },

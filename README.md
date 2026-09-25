@@ -1,4 +1,4 @@
-# 🤖 Suite Bot Discord & Dashboard Web (Style DraftBot)
+# 🤖 Bloomera - Bot Discord & Dashboard Web
 
 Une solution complète pour gérer un serveur Discord via un **Bot polyvalent** et une **Interface Web d'administration (Dashboard)** moderne et au style neutre (prête à recevoir la charte graphique de votre serveur).
 
@@ -88,20 +88,20 @@ DATABASE_URL="file:../../dev.db"
 
 ### 3. Initialiser la Base de Données
 ```powershell
-npm run db:push
+pnpm db:push
 ```
-*(Optionnel) Pour visualiser la base dans votre navigateur : `npm run db:studio`*
+*(Optionnel) Pour visualiser la base dans votre navigateur : `pnpm db:studio`*
 
 ### 4. Lancer le Dashboard Web
 ```powershell
-npm run dev:dashboard
+pnpm dev:dashboard
 ```
 Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
 
 ### 5. Lancer le Bot Discord
 Dans un autre terminal :
 ```powershell
-npm run dev:bot
+pnpm dev:bot
 ```
 
 ---
