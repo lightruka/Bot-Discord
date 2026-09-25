@@ -7,6 +7,13 @@ Statuts utilisés : [Effectué], [Terminé], [En cours], [En attente], [Résolu]
 
 ---
 
+## [1.0.6] - 2026-09-25 - Feuille de route opérationnelle
+
+### Ajouté [Effectué]
+- **Documentation projet** : ajout de `TODO.md` à la racine avec les travaux restants, priorités et critères de livraison vers un bot et un dashboard pleinement opérationnels et automatisés.
+
+---
+
 ## [1.0.5] - 2026-09-25 - Sélection réelle des serveurs Discord
 
 ### Modifié [Effectué]
