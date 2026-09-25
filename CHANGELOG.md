@@ -17,6 +17,9 @@ Statuts utilisés : [Effectué], [Terminé], [En cours], [En attente], [Résolu]
 ### Problèmes rencontrés et solutions [Résolu]
 - **Mauvaise cohérence des variables d’environnement côté client** : le code utilisait `NEXT_PUBLIC_DISCORD_CLIENT_ID` alors que le fichier `.env` ne le définissait pas. Cela pouvait produire un lien d’invitation invalide ou un fallback générique. [Résolu]
   - **Solution** : ajout explicite de `NEXT_PUBLIC_DISCORD_CLIENT_ID` dans le template `.env.example` et fallback logique dans le code. [Résolu]
+- **Blocage de l’installation du monorepo sur Windows** : `npm install` a échoué avec `EISDIR` et la création du workspace `@bot/database` a été bloquée par une limitation de symlink/junction Windows, empêchant la résolution du package partagé. [Non résolu]
+  - **Cause** : l’environnement Windows actuel n’autorisait pas la création du lien de workspace nécessaire au monorepo, sans élévation de privilèges ou activation du mode développeur. [Non résolu]
+  - **Solution recommandée** : lancer PowerShell en mode Administrateur, vérifier que Node.js/npm sont bien disponibles dans le `PATH`, puis relancer `npm install`. En cas de blocage persistant, activer le Mode Développeur Windows ou exécuter la commande depuis un terminal administrateur. [En attente]
 
 ---
 
