@@ -7,6 +7,11 @@ Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/)
 
 ## [Non publié] - À venir
 
+### Modifié
+- **Renommage du projet en Bloomera** : interface dashboard, labels et métadonnées mises à jour pour refléter l'identité du bot.
+- **Nouveau thème visuel** : palette de couleurs ambrée / dorée appliquée au dashboard pour une ambiance plus chaleureuse et personnalisée.
+- **Ajustement des couleurs de bienvenue** : définition du palette Bloomera (`#F59E0B`) pour les embeds de bienvenue et autres messages configurables du bot.
+
 ---
 
 ## [1.0.0] - 2026-09-25

@@ -16,7 +16,7 @@ export async function GET(
         channelId: null,
         message: "Bienvenue {user} sur **{server}** !",
         useEmbed: true,
-        embedColor: "#5865F2",
+        embedColor: "#F59E0B",
         embedTitle: "Bienvenue !",
         autoRoleId: null,
         leaveEnabled: false,

@@ -5,8 +5,8 @@ import Link from "next/link";
 import { Bot, Shield, ExternalLink } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Dashboard Discord Bot | Gestion Complète de Serveur",
-  description: "Interface web de configuration pour bot Discord polyvalent style DraftBot.",
+  title: "Bloomera | Dashboard & Gestion de Serveur Discord",
+  description: "Interface web de configuration pour Bloomera, le bot Discord chaleureux et complet.",
 };
 
 export default function RootLayout({
@@ -21,12 +21,12 @@ export default function RootLayout({
           <header className="border-b border-zinc-800/80 bg-zinc-900/60 backdrop-blur-md sticky top-0 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
               <Link href="/" className="flex items-center gap-3 group">
-                <div className="w-10 h-10 rounded-xl bg-zinc-800 border border-zinc-700/60 flex items-center justify-center text-zinc-100 group-hover:border-zinc-500 transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 group-hover:border-amber-500/60 transition-colors">
                   <Bot className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="font-semibold text-zinc-100 text-lg tracking-tight">DiscordBot</span>
-                  <span className="text-xs px-2 py-0.5 ml-2 rounded-full bg-zinc-800 text-zinc-400 font-mono border border-zinc-700">
+                  <span className="font-bold text-zinc-100 text-lg tracking-tight group-hover:text-amber-400 transition-colors">Bloomera</span>
+                  <span className="text-xs px-2 py-0.5 ml-2 rounded-full bg-amber-500/10 text-amber-400 font-mono border border-amber-500/20">
                     Dashboard
                   </span>
                 </div>
@@ -55,7 +55,7 @@ export default function RootLayout({
           <main className="flex-1 flex flex-col">{children}</main>
 
           <footer className="border-t border-zinc-900 py-6 text-center text-xs text-zinc-500">
-            <p>Bot Discord & Dashboard d'administration &bull; Style neutre personnalisable</p>
+            <p>Bloomera Bot & Dashboard d'administration &bull; Un petit coin de soleil pour votre communauté</p>
           </footer>
         </AuthProvider>
       </body>

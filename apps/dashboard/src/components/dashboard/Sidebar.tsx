@@ -90,11 +90,11 @@ export function Sidebar({ guildId, guildName = "Mon Serveur" }: SidebarProps) {
                 href={link.href}
                 className={`flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition ${
                   isActive
-                    ? "bg-zinc-800 text-zinc-100 border border-zinc-700/60"
+                    ? "bg-amber-500/10 text-amber-400 border border-amber-500/30 font-semibold"
                     : "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900"
                 }`}
               >
-                {link.icon}
+                <span className={isActive ? "text-amber-400" : "text-zinc-400"}>{link.icon}</span>
                 <span>{link.label}</span>
               </Link>
             );
@@ -103,7 +103,7 @@ export function Sidebar({ guildId, guildName = "Mon Serveur" }: SidebarProps) {
       </div>
 
       <div className="pt-4 border-t border-zinc-900 text-xs text-zinc-500">
-        <p>Thème neutre personnalisable</p>
+        <p>Bloomera Bot &bull; Ambiance Soleil</p>
       </div>
     </aside>
   );

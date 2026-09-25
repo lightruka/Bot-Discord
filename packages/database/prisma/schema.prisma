@@ -35,7 +35,7 @@ model WelcomeConfig {
   channelId      String?
   message        String       @default("Bienvenue {user} sur le serveur **{server}** ! Nous sommes maintenant {count} membres.")
   useEmbed       Boolean      @default(true)
-  embedColor     String       @default("#5865F2")
+  embedColor     String       @default("#F59E0B")
   embedTitle     String       @default("Nouveau membre !")
   autoRoleId     String?
   
