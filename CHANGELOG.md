@@ -7,6 +7,19 @@ Statuts utilisés : [Effectué], [Terminé], [En cours], [En attente], [Résolu]
 
 ---
 
+## [1.0.4] - 2026-09-25 - Correction du build du package database
+
+### Corrigé [Effectué]
+- **Types Node.js** : déclaration de `@types/node` dans `@bot/database`, nécessaire à la compilation de ses références à `process.env`.
+- **Client Prisma** : génération automatique du client partagé après l'installation pnpm.
+- **Build du bot** : correction du type nullable de l'icône de serveur et vérification que le canal accepte l'envoi avant de publier l'avertissement d'Auto-Mod.
+
+### Notes Techniques
+- La première installation pnpm a nécessité l'approbation des scripts Prisma et esbuild. Le build complet a aussi révélé l'absence de types Node.js dans le package partagé, de génération Prisma à l'installation et deux erreurs TypeScript dans le bot.
+- **Validation** : installation pnpm forcée, build complet des trois workspaces et réponse HTTP `200` du dashboard validés. Le fichier de types généré par Next.js est ignoré par Git.
+
+---
+
 ## [1.0.3] - 2026-09-25 - Migration vers pnpm
 
 ### Modifié [Effectué]

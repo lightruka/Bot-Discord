@@ -36,7 +36,7 @@ export const leaderboardCommand: Command = {
         .setTitle(`🏆 Classement XP : ${interaction.guild.name}`)
         .setDescription(lines.join("\n\n"))
         .setColor(0xFEE75C)
-        .setThumbnail(interaction.guild.iconURL() || undefined)
+        .setThumbnail(interaction.guild.iconURL())
         .setFooter({ text: "Gagnez de l'XP en discutant dans les salons actifs !" })
         .setTimestamp();
 

@@ -22,6 +22,7 @@ export async function onMessageCreate(message: Message) {
         const linkRegex = /(https?:\/\/[^\s]+)|(discord\.(gg|io|me|li)\/[^\s]+)/gi;
         if (linkRegex.test(message.content)) {
           await message.delete().catch(() => null);
+          if (!message.channel.isSendable()) return;
           const reply = await message.channel.send({
             content: `⚠️ <@${message.author.id}>, les liens ne sont pas autorisés sur ce serveur.`,
           });
