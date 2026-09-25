@@ -7,6 +7,14 @@ Statuts utilisés : [Effectué], [Terminé], [En cours], [En attente], [Résolu]
 
 ---
 
+## [1.0.5] - 2026-09-25 - Sélection réelle des serveurs Discord
+
+### Modifié [Effectué]
+- **Dashboard** : remplacement des serveurs de démonstration par les serveurs administrables retournés par l'API OAuth Discord, avec comptage approximatif et présence du bot issue de la base.
+- **Authentification** : la route de liste exige une session Discord et filtre les serveurs selon les permissions Administrateur ou Gérer le serveur.
+
+---
+
 ## [1.0.4] - 2026-09-25 - Correction du build du package database
 
 ### Corrigé [Effectué]

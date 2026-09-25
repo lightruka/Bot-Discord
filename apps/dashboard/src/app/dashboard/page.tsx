@@ -1,46 +1,56 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Server, ArrowUpRight, Search, PlusCircle, ShieldCheck } from "lucide-react";
+import { signIn, useSession } from "next-auth/react";
+import { ArrowUpRight, Search, PlusCircle, ShieldCheck } from "lucide-react";
 
 interface Guild {
   id: string;
   name: string;
-  icon?: string | null;
+  icon: string | null;
   botPresent: boolean;
-  memberCount: number;
+  approximateMemberCount: number | null;
 }
 
 export default function DashboardPage() {
   const [search, setSearch] = useState("");
-  const discordClientId =
-    process.env.NEXT_PUBLIC_DISCORD_CLIENT_ID || process.env.DISCORD_CLIENT_ID || "123";
+  const [guilds, setGuilds] = useState<Guild[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const { status } = useSession();
+  const discordClientId = process.env.NEXT_PUBLIC_DISCORD_CLIENT_ID;
 
-  // Liste de serveurs de démonstration et réels
-  const guilds: Guild[] = [
-    {
-      id: "123456789012345678",
-      name: "Mon Serveur Communautaire",
-      icon: null,
-      botPresent: true,
-      memberCount: 142,
-    },
-    {
-      id: "987654321098765432",
-      name: "Serveur Gaming & Esport",
-      icon: null,
-      botPresent: true,
-      memberCount: 89,
-    },
-    {
-      id: "112233445566778899",
-      name: "Serveur Développement & Projets",
-      icon: null,
-      botPresent: false,
-      memberCount: 15,
-    },
-  ];
+  useEffect(() => {
+    if (status === "loading") return;
+    if (status === "unauthenticated") {
+      setLoading(false);
+      return;
+    }
+
+    let active = true;
+    setLoading(true);
+    setError("");
+
+    fetch("/api/guilds", { cache: "no-store" })
+      .then(async (response) => {
+        if (!response.ok) throw new Error("Impossible de charger les serveurs.");
+        return (await response.json()) as { guilds: Guild[] };
+      })
+      .then(({ guilds: loadedGuilds }) => {
+        if (active) setGuilds(loadedGuilds);
+      })
+      .catch(() => {
+        if (active) setError("Les serveurs Discord n'ont pas pu être chargés.");
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [status]);
 
   const filtered = guilds.filter((g) =>
     g.name.toLowerCase().includes(search.toLowerCase())
@@ -70,7 +80,26 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {status === "unauthenticated" ? (
+        <div className="mt-8 rounded-xl border border-zinc-800 bg-zinc-900/40 p-8 text-center">
+          <p className="text-zinc-300">Connectez-vous avec Discord pour voir vos serveurs.</p>
+          <button
+            onClick={() => signIn("discord")}
+            className="mt-5 inline-flex items-center justify-center rounded-lg bg-amber-500 px-4 py-2 text-sm font-semibold text-zinc-950 hover:bg-amber-400"
+          >
+            Se connecter avec Discord
+          </button>
+        </div>
+      ) : loading ? (
+        <p className="mt-8 text-sm text-zinc-400">Chargement des serveurs Discord...</p>
+      ) : error ? (
+        <p role="alert" className="mt-8 text-sm text-rose-400">{error}</p>
+      ) : filtered.length === 0 ? (
+        <p className="mt-8 text-sm text-zinc-400">
+          Aucun serveur administrable trouvé pour cette recherche.
+        </p>
+      ) : (
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.map((guild) => (
           <div
             key={guild.id}
@@ -78,14 +107,20 @@ export default function DashboardPage() {
           >
             <div>
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-zinc-800 border border-zinc-700/60 flex items-center justify-center font-bold text-lg text-zinc-300">
-                  {guild.name.slice(0, 2).toUpperCase()}
+                <div
+                  aria-hidden="true"
+                  className="w-14 h-14 rounded-2xl bg-zinc-800 bg-cover bg-center border border-zinc-700/60 flex items-center justify-center font-bold text-lg text-zinc-300"
+                  style={guild.icon ? { backgroundImage: `url(${guild.icon})` } : undefined}
+                >
+                  {!guild.icon && guild.name.slice(0, 2).toUpperCase()}
                 </div>
                 <div>
                   <h3 className="font-semibold text-zinc-100 text-base">{guild.name}</h3>
                   <div className="flex items-center gap-2 mt-1">
                     <span className="text-xs text-zinc-400">
-                      {guild.memberCount} membres
+                      {guild.approximateMemberCount === null
+                        ? "Membres non disponibles"
+                        : `~${guild.approximateMemberCount.toLocaleString("fr-FR")} membres`}
                     </span>
                     <span className="text-zinc-600">&bull;</span>
                     {guild.botPresent ? (
@@ -110,7 +145,7 @@ export default function DashboardPage() {
                   <span>Configurer</span>
                   <ArrowUpRight className="w-4 h-4" />
                 </Link>
-              ) : (
+              ) : discordClientId ? (
                 <a
                   href={`https://discord.com/oauth2/authorize?client_id=${discordClientId}&scope=bot%20applications.commands&permissions=8`}
                   target="_blank"
@@ -120,11 +155,16 @@ export default function DashboardPage() {
                   <PlusCircle className="w-4 h-4" />
                   <span>Inviter le bot</span>
                 </a>
+              ) : (
+                <p className="text-center text-xs text-zinc-500">
+                  Configurez NEXT_PUBLIC_DISCORD_CLIENT_ID pour inviter le bot.
+                </p>
               )}
             </div>
           </div>
         ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
