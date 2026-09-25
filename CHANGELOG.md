@@ -7,6 +7,19 @@ Statuts utilisés : [Effectué], [Terminé], [En cours], [En attente], [Résolu]
 
 ---
 
+## [1.0.2] - 2026-09-25 - Correction de configuration OAuth / Dashboard
+
+### Modifié [Effectué]
+- **Correction de la variable publique Discord** : ajout de `NEXT_PUBLIC_DISCORD_CLIENT_ID` dans le template d’environnement pour que le dashboard puisse générer correctement le lien d’invitation du bot depuis le client. [Effectué]
+- **Correction de fallback côté dashboard** : le composant de sélection de serveur utilise maintenant `NEXT_PUBLIC_DISCORD_CLIENT_ID` puis `DISCORD_CLIENT_ID` comme valeur de secours, évitant une URL invalide avec la valeur par défaut `123`. [Effectué]
+- **Documentation alignée** : mise à jour du README et de `.env.example` pour refléter la configuration nécessaire au bon fonctionnement de l’authentification Discord et de l’invitation du bot. [Effectué]
+
+### Problèmes rencontrés et solutions [Résolu]
+- **Mauvaise cohérence des variables d’environnement côté client** : le code utilisait `NEXT_PUBLIC_DISCORD_CLIENT_ID` alors que le fichier `.env` ne le définissait pas. Cela pouvait produire un lien d’invitation invalide ou un fallback générique. [Résolu]
+  - **Solution** : ajout explicite de `NEXT_PUBLIC_DISCORD_CLIENT_ID` dans le template `.env.example` et fallback logique dans le code. [Résolu]
+
+---
+
 ## [1.0.1] - 2026-09-25 - Publication GitHub
 
 ### État du projet [Terminé]

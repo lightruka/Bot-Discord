@@ -78,6 +78,7 @@ Ouvrez le fichier `.env` à la racine et renseignez vos identifiants :
 ```env
 DISCORD_TOKEN="votre_token_ici"
 DISCORD_CLIENT_ID="votre_client_id_ici"
+NEXT_PUBLIC_DISCORD_CLIENT_ID="votre_client_id_ici"
 DISCORD_CLIENT_SECRET="votre_client_secret_ici"
 
 NEXTAUTH_URL="http://localhost:3000"

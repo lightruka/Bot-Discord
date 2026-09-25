@@ -14,6 +14,8 @@ interface Guild {
 
 export default function DashboardPage() {
   const [search, setSearch] = useState("");
+  const discordClientId =
+    process.env.NEXT_PUBLIC_DISCORD_CLIENT_ID || process.env.DISCORD_CLIENT_ID || "123";
 
   // Liste de serveurs de démonstration et réels
   const guilds: Guild[] = [
@@ -110,7 +112,7 @@ export default function DashboardPage() {
                 </Link>
               ) : (
                 <a
-                  href={`https://discord.com/oauth2/authorize?client_id=${process.env.NEXT_PUBLIC_DISCORD_CLIENT_ID || "123"}&scope=bot%20applications.commands&permissions=8`}
+                  href={`https://discord.com/oauth2/authorize?client_id=${discordClientId}&scope=bot%20applications.commands&permissions=8`}
                   target="_blank"
                   rel="noreferrer"
                   className="w-full inline-flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-sm font-medium transition border border-zinc-700/60"
